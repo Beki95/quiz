@@ -3,14 +3,14 @@ from datetime import datetime as dt
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-from apps.db.base import Base
+from core.base_db import Base
 
 
 class Quiz(Base):
     __tablename__ = 'quiz'
 
     id = Column(Integer, primary_key=True, index=True)
-    questions = relationship('Question', back_populates='quiz')
+    questions = relationship('Question', back_populates='quiz', lazy='joined')
 
     created_at = Column(DateTime, default=dt.utcnow)
 
@@ -29,7 +29,7 @@ class Question(Base):
     question_created_at = Column(DateTime)
 
     quiz_id = Column(Integer, ForeignKey("quiz.id"))
-    quiz = relationship('Quiz', back_populates='questions')
+    quiz = relationship('Quiz', back_populates='questions', lazy='joined')
 
 
 question = Question.__tablename__
