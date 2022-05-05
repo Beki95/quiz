@@ -19,3 +19,4 @@ class QuestionScheme(BaseModel):
 class QuizScheme(BaseModel):
     id: int
     created_at: datetime.datetime
+    questions: list[QuestionScheme, ...]

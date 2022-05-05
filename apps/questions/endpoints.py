@@ -4,12 +4,12 @@ from fastapi import Depends
 from core.base_db import get_db
 from core.tasks import task_get_questions
 from repositories.quiz import QuizRepository
-from schemas.questions_scheme import QuestionCount
+from schemas.questions_scheme import QuestionCount, QuizScheme
 
 router = APIRouter()
 
 
-@router.post("/")
+@router.post("/", response_model=QuizScheme)
 async def create_questions(count: QuestionCount, db=Depends(get_db)):
     count = count.dict().get('questions_num')
     data = await QuizRepository(db=db).get()
