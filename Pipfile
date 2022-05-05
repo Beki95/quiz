@@ -6,6 +6,13 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+python-decouple = "*"
+sqlalchemy = "*"
+psycopg2-binary = "*"
+databases = {extras = ["postgresql"], version = "*"}
+aiohttp = "*"
+celery = "*"
+redis = "*"
 
 [dev-packages]
 
